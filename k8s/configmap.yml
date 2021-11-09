@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: elecserve-config
+data:
+  database: elecserve
+  postgres-password: admin

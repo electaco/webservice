@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}Hello{% endblock %}
+
+{% block content %}
+<h2>Markers</h2>
+<div>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Category</th>
+            <th>Added</th>
+            <th>Uploader</th>
+            <th></th>
+        </tr>
+        </thead>
+{% for marker in markers %}
+    <tr>
+        <td><a href="{% url 'info_markers' marker.id %}">{{ marker.title }}</a></td>
+        <td>{{ marker.description }}</td>
+        <td>{{ marker.category }}</td>
+        <td>{{ marker.added }}</td>
+        <td>{{ marker.added_by }}</td>
+        <td><a href="{% url 'download_markers' marker.id %}"><i class="fas fa-download"></i></a></td>
+    </tr>
+{% endfor %}
+
+</table>
+</div>
+{% endblock %}

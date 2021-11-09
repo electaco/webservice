@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block content %}
+            <h1>{{ marker.title }}</h1>
+            <p>{{ marker.description }}</p>
+            <p>By {{ marker.added_by }}</p>
+            <p>{{ marker.added }}</p>
+            <p><a href="{% url 'download_markers' marker.id %}"><i class="fas fa-download"></i></a></p>
+            {% for mrk, mrks in marker.data.markers.items %}
+                <h2>Map {{ mrk }}</h2>
+                <table>
+                    {% for mark in mrks %}  
+                    <tr>
+                        <td>{{ mark.name }}</td>
+                        <td>{{ mark.type }}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            {% endfor %}
+{% endblock %}

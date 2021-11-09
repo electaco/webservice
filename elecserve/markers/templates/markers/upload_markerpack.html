@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load django_bootstrap5 %}
+{% block title %}Upload markerpack{% endblock %}
+
+{% block content %}
+<form action="." enctype="multipart/form-data" method="post" class="form">
+    {% csrf_token %}
+
+    {% bootstrap_form form %}
+    {% bootstrap_button button_type="submit" content="Upload" %}
+</form>
+{% endblock %}
