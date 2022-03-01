@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: elecserve
-        image: terrasque/elecserve:6
+        image: terrasque/elecserve:7
         ports:
         - containerPort: 80
         env:

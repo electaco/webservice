@@ -3,6 +3,7 @@ from django.shortcuts import render, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from django.utils import timezone
 from django.core.exceptions import ObjectDoesNotExist
+from django.db.models import Q
 
 from .models import MarkerPack
 from .forms import MarkersForm
@@ -13,7 +14,7 @@ def search(request):
     data = []
     if query and len(query) > 1:
         data = MarkerPack.objects.\
-            filter(data__name__icontains=query).\
+            filter( Q(data__name__icontains=query) | Q(data__description__icontains=query)).\
             select_related("category", "added_by")
     data = [x.query_result() for x in data]
     return JsonResponse({"result":data})
@@ -27,7 +28,7 @@ def download_markers(request, id):
     mp = get_object_or_404(MarkerPack, id=id)
     if mp:
         response = JsonResponse(mp.data, content_type='application/octet-stream')
-        # Make mp.title filename safe
+        # TODO: Make mp.title filename safe
         response['Content-Disposition'] = 'attachment; filename=%s.etmp' % mp.title
         return response
 

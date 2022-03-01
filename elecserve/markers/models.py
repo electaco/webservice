@@ -24,7 +24,8 @@ class MarkerPack(models.Model):
     added_by = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True)
 
     def query_result(self):
-        return {"title": self.title, "id": self.id, "category": self.category.name, "uploader": self.added_by.username}
+        return {"title": self.title, "id": self.id, "category": self.category.name, 
+                "uploader": self.added_by.username, "description": self.data.get("description", "")}
 
     def __str__(self):
         return self.title
