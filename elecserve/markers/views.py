@@ -11,12 +11,15 @@ from .forms import MarkersForm
 # Create your views here.
 def search(request):
     query = request.GET.get('q')
-    data = []
+    mapid = request.GET.get('map')
+    data = MarkerPack.objects.select_related("category", "added_by").all()
     if query and len(query) > 1:
-        data = MarkerPack.objects.\
-            filter( Q(data__name__icontains=query) | Q(data__description__icontains=query)).\
-            select_related("category", "added_by")
-    data = [x.query_result() for x in data]
+        data = data.filter( Q(data__name__icontains=query) | Q(data__description__icontains=query))
+            
+    if mapid:
+        print("Mapid: %s" % mapid)
+        data = data.filter(data__markers__has_key=mapid)
+    data = [x.query_result() for x in data[:10]]
     return JsonResponse({"result":data})
 
 def get_markers(request, id):
