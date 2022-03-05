@@ -1,0 +1,2 @@
+docker build . -t terrasque/elecserve:8
+docker push terrasque/elecserve:8
