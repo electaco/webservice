@@ -11,6 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 from pathlib import Path
+
+from django.conf import Settings
 from .dockerdata import Database, Extra
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -73,7 +75,7 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'elecserve.wsgi.application'
-
+CSRF_TRUSTED_ORIGINS = Extra.CSRF_TRUSTED_ORIGINS
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases

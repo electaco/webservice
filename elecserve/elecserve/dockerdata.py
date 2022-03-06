@@ -13,3 +13,4 @@ class Extra:
     DEBUG = os.getenv('DEBUG', "True") == 'True'
     ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', "*").split(',')
     STATIC_ROOT = os.getenv('STATIC_ROOT', "static")
+    CSRF_TRUSTED_ORIGINS = os.getenv('CSRF_TRUSTED_ORIGINS', "http://localhost:").split(',')

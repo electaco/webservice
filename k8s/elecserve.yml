@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
       - name: elecserve
-        image: terrasque/elecserve:8
+        image: terrasque/elecserve:10
         ports:
         - containerPort: 80
         env:
@@ -28,6 +28,8 @@ spec:
           value: postgres
         - name: DB_HOST
           value: postgres
+        - name: CSRF_TRUSTED_ORIGINS
+          value: https://elec.k.thelazy.net
         - name: DB_PASSWORD
           valueFrom:
             configMapKeyRef:
